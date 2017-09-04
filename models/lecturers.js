@@ -10,7 +10,7 @@ let LecturerSchema = new mongoose.Schema({
     },
     courses:[
         {
-            id: mongoose.Schema.Types.ObjectId
+            code: String
         }
     ],
     password: {

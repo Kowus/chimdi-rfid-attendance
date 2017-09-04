@@ -47,7 +47,7 @@ while (tmp3.isBefore(end)) {
 
 let myTemp = {
     code:"ECE104",
-    lecturer:mongoose.Schema.Types.ObjectId("59ada5b5882a1f0291208257"),
+    lecturer:{id:"59adacdc79a55d0383ee4187"},
     schedule:arr,
     title:"Embedded Systems",
 };
@@ -55,16 +55,17 @@ let myTemp = {
 
 Course.insertMany(myTemp, function (err, docs) {
    if(err) return console.log(err);
-    Lecturer.updateOne({_id:docs.lecturer._id}, {
+   console.log(docs);
+    Lecturer.updateOne({_id:myTemp.lecturer.id}, {
         $push: {
             courses:{
                 $each:[{
-                    "id":docs._id
+                    "code":docs.code
                 }],
                 $position: 0
             }
     }}, function (err, result) {
-        if(err) return res.send("Error Updating Lecturer Course Collection.");
+        if(err) return console.error("Error Updating Lecturer Course Collection.");
         console.log("Updated lecturer course field");
     });
    console.log("Successfully Saved Course");
