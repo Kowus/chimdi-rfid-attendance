@@ -55,9 +55,17 @@ let myTemp = {
 
 Course.insertMany(myTemp, function (err, docs) {
    if(err) return console.log(err);
-    Lecturer.updateOne({_id:docs._id}, {
-        $set:{
-        }
+    Lecturer.updateOne({_id:docs.lecturer._id}, {
+        $push: {
+            courses:{
+                $each:[{
+                    "id":docs._id
+                }],
+                $position: 0
+            }
+    }}, function (err, result) {
+        if(err) return res.send("Error Updating Lecturer Course Collection.");
+        console.log("Updated lecturer course field");
     });
    console.log("Successfully Saved Course");
 });
