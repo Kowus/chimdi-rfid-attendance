@@ -6,7 +6,7 @@ let    config = require('../config/database'),
 let jwt = require('jsonwebtoken'),
     router = express.Router(),
     User = require('../models/user'),
-    Book = require('../models/book');
+    Course = require('../models/courses');
 
 
 
@@ -90,27 +90,26 @@ router.post('/signin/card/:card', (req, res, next)=>{
     })
 });
 
-router.post('/book', function (req, res) {
+router.post('/course/add', function (req, res) {
     if (req.get('Authorization')){
         jwt.verify(req.get('Authorization').split(' ')[1], config.secret, (err, decoded)=>{
             if (err) return res.status(403).send({success: false, msg: {msg: 'Unauthorized.', error: err}});
-            let newBook = new Book({
-                isbn: req.body.isbn,
-                title: req.body.title,
-                author: req.body.author,
-                publisher: req.body.publisher
+            let newCourse = new Course({
+                code: req.body.code,
+                title: req.body.title
             });
 
-            newBook.save(function(err) {
+            newCourse.save(function(err) {
                 if (err) {
-                    return res.json({success: false, msg: 'Save book failed.'});
+                    return res.json({success: false, msg: 'Save Course failed.'});
                 }
-                res.json({success: true, msg: 'Successful created new book.'});
+                res.json({success: true, msg: 'Successful created new Course.'});
             });
         });
     }
 });
-router.get('/book', passport.authenticate('jwt', { session: false}), function(req, res) {
+
+router.get('/courses', passport.authenticate('jwt', { session: false}), function(req, res) {
 
     let token = getToken(req.headers);
     if (token) {
