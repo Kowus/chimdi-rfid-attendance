@@ -7,9 +7,9 @@ router.get('/', function(req, res, next) {
   res.redirect('/login');
 });
 
-router.get('/signup', function(req, res, next) {
-    res.render("signup",{title:"Sign Up",message: req.flash('signupMessage') });
-});
+// router.get('/signup', function(req, res, next) {
+//     res.render("signup",{title:"Sign Up",message: req.flash('signupMessage') });
+// });
 
 router.get('/profile', isLoggedIn, function (req, res, next) {
     res.render("profile",{title:req.user.username+" Dashboard", user:req.user});

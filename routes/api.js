@@ -91,13 +91,14 @@ router.post('/signin/card/:card', (req, res, next)=>{
 });
 
 router.post('/course/add', function (req, res) {
-    if (req.get('Authorization')){
-        jwt.verify(req.get('Authorization').split(' ')[1], config.secret, (err, decoded)=>{
+    // if (req.get('Authorization')){
+        // jwt.verify(req.get('Authorization').split(' ')[1], config.secret, (err, decoded)=>{
             if (err) return res.status(403).send({success: false, msg: {msg: 'Unauthorized.', error: err}});
             let newCourse = new Course({
                 code: req.body.code,
                 title: req.body.title
             });
+
 
             newCourse.save(function(err) {
                 if (err) {
@@ -105,8 +106,8 @@ router.post('/course/add', function (req, res) {
                 }
                 res.json({success: true, msg: 'Successful created new Course.'});
             });
-        });
-    }
+        // });
+    // }
 });
 
 router.get('/courses', passport.authenticate('jwt', { session: false}), function(req, res) {
