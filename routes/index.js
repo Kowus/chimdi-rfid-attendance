@@ -8,15 +8,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/signup', function(req, res, next) {
-    res.json({title:"Sign Up",message: req.flash('signupMessage') });
+    res.render("signup",{title:"Sign Up",message: req.flash('signupMessage') });
 });
 
 router.get('/profile', isLoggedIn, function (req, res, next) {
-    res.json(req.user);
+    res.render("profile",{title:req.user.username+" Dashboard", user:req.user});
 });
 
-router.get('/login', function(req, res, next) {
-    res.json({title:"Log In",message: req.flash('loginMessage') });
+router.get('/login', isNotLoggedIn, function(req, res, next) {
+    res.render("login",{title:"Log In",message: req.flash('loginMessage') });
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
@@ -44,4 +44,13 @@ function isLoggedIn(req, res, next) {
         return next();
 
     res.redirect('/login');
+}
+
+
+function isNotLoggedIn(req, res, next) {
+
+    if (req.isAuthenticated())
+        res.redirect('/profile');
+    else
+        return next();
 }

@@ -1,0 +1,32 @@
+<div class="jumbotron" style="background-color: transparent; color: black; margin-bottom: -200px; margin-top: -40px;">
+    <div class="container">
+        <h1 style="font-size: 40px;" class="page-head">ALL NATIONS UNIVERSITY COLLEGE</h1>
+    </div>
+</div>
+<div class="container form-margin">
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+            <form method="post">
+                <h1>Login</h1>
+                {{#if message}}
+                    <div class="alert alert-danger alert-dismissable fade in">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{{message}}}
+                    </div>
+                {{/if}}
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Username / E-mail">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-alfred">Submit</button>
+                <div class="form-info col-sm-12 text-center">
+                    Don't have an account?
+                    <span><a href="/signup">Sign Up!</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
