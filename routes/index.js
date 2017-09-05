@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
+let Course = require('../models/courses');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,9 +13,20 @@ router.get('/', function(req, res, next) {
 // });
 
 router.get('/profile', isLoggedIn, function (req, res, next) {
-    res.render("profile",{title:req.user.username+" Dashboard", user:req.user});
-});
 
+    Course.findOne({code: req.user.courses[0].code}, (err, course)=>{
+        if(err) console.error(err);
+
+        res.render("profile",{title:req.user.username+" Dashboard", user:req.user, courses:course});
+    });
+
+});
+router.get('/courses/get/:id',isLoggedIn, (req, res, next)=>{
+    Course.findOne({_id:req.params.id}, (err, course)=>{
+        if (err) return res.send("Error getting Schedule");
+        res.json(course);
+    })
+});
 router.get('/login', isNotLoggedIn, function(req, res, next) {
     res.render("login",{title:"Log In",message: req.flash('loginMessage') });
 });

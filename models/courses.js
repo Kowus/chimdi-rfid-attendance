@@ -27,7 +27,7 @@ let CourseSchema = new mongoose.Schema({
         {
             id: mongoose.Schema.Types.ObjectId
         }
-    ]
+    ], history:[{student:mongoose.Schema.Types.ObjectId, date:String}]
 });
 
 module.exports = mongoose.model("Course", CourseSchema);

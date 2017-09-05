@@ -27,20 +27,6 @@ module.exports = function (passport) {
     }));
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     passport.use('local-signup', new LocalStrategy({
         usernameField: "username",
         passwordField: "password",
@@ -81,20 +67,6 @@ module.exports = function (passport) {
             });
         });
     }));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     passport.use('local-login', new LocalStrategy({

@@ -1,6 +1,7 @@
 require("dotenv").config();
 let mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb://localhost/node-auth');
 let Course = require('./models/courses');
 let Lecturer = require('./models/lecturers');
 let moment = require('moment');
@@ -47,7 +48,7 @@ while (tmp3.isBefore(end)) {
 
 let myTemp = {
     code:"ECE104",
-    lecturer:{id:"59adacdc79a55d0383ee4187"},
+    lecturer:{id:"59adc36698f47103724c5da3"},
     schedule:arr,
     title:"Embedded Systems",
 };
@@ -55,12 +56,11 @@ let myTemp = {
 
 Course.insertMany(myTemp, function (err, docs) {
    if(err) return console.log(err);
-   console.log(docs);
-    Lecturer.updateOne({_id:myTemp.lecturer.id}, {
+    Lecturer.update({_id:docs[0].lecturer.id}, {
         $push: {
             courses:{
                 $each:[{
-                    "code":docs.code
+                    "code":docs[0].code
                 }],
                 $position: 0
             }
