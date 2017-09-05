@@ -15,9 +15,12 @@ router.post('/signup', function (req, res) {
         res.json({success: false, msg: 'Please pass username and password'});
     } else {
         let newUser = new User({
+            firstname: req.body.firstname,
+            lastname:req.body.lastname,
             username: req.body.username,
             password: req.body.password,
-            card: req.body.card
+            card: req.body.card,
+            indexNumber:req.body.indexNumber
         });
 
         newUser.save(function (err) {
@@ -89,7 +92,10 @@ router.get('/signin/card', (req, res, next) => {
                 $push: {
                     "schedule.0.attendance":{
                         $each:[{
-                            "student_id":user._id
+                            "student_id":user._id,
+                            "student_fname":user.firstname,
+                            "student_lname":user.lastname,
+                            "student_index":user.indexNumber
                         }],
                             $position: 0
                     }

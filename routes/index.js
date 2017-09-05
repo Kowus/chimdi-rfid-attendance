@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
-let Course = require('../models/courses');
+let Course = require('../models/courses'),
+    User = require('../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -22,9 +23,25 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
 
 });
 router.get('/courses/get/:id',isLoggedIn, (req, res, next)=>{
-    Course.findOne({_id:req.params.id}, (err, course)=>{
+    Course.findOne({"schedule._id":req.params.id}, (err, course)=>{
         if (err) return res.send("Error getting Schedule");
-        res.render("course_outline",{title:req.user.username+" Dashboard", user:req.user, courses:course});
+
+        let sched = course;
+        let newSched = {};
+        let idBatch = [];
+        let newAt = [];
+        for(var key in sched.schedule){
+            // console.log(`Key: ${key}\t|\t value: ${sched.schedule[key]}`);
+
+            if(sched.schedule[key]._id == req.params.id){
+                newSched = sched.schedule[key];
+                // console.log(newSched);
+            }
+
+        }
+        res.json({title:req.user.username+" Dashboard", user:req.user, course: {title: course.title, code: course.code }, schedule:newSched});
+
+        // res.render("course_outline",{title:req.user.username+" Dashboard", user:req.user, course_name:course.title, schedule:newSched});
     })
 });
 router.get('/login', isNotLoggedIn, function(req, res, next) {

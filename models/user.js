@@ -1,6 +1,14 @@
 let mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 let UserSchema = new mongoose.Schema({
+    firstname:{
+        type: String,
+        required: true
+    },
+    lastname:{
+        type: String,
+        required: true
+    },
      card:{
         type: String,
         required: true
@@ -16,6 +24,9 @@ let UserSchema = new mongoose.Schema({
         type: String,
         unique: true,
         required: true
+    }, indexNumber:{
+        type: Number,
+        unique:true
     }
 });
 

@@ -15,12 +15,8 @@
             <div class="jumbotron">
                 <h1>Welcome {{user.firstname}} {{user.lastname}}</h1>
 
-                <h3 class="text-center">Your Scheduled Courses for the Week</h3>
-                <ul class="list-group list-unstyled text-center">
-                    {{#each courses}}
-                        <li><a href="/courses/get/{{_id}}">{{title}} {{code}}</a></li>
-                    {{/each}}
-                </ul>
+                <h3 class="text-center">Attendance Log For {{course.title}} {{course.code}} <small> {{schedule.date}} [ {{schedule.venue}} ]</small></h3>
+                <table></table>
             </div>
 
 

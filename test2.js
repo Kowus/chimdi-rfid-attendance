@@ -67,3 +67,27 @@ for (var key in foo.schedule) {
 }
 
 console.log(foo.schedule);
+
+var jfdi = {
+    "title": "goodluck Dashboard",
+    "user": {
+        "_id": "59adc36698f47103724c5da3",
+        "firstname": "Goodluck",
+        "lastname": "Akimbola",
+        "email": "akimbola@gmail.com",
+        "password": "$2a$10$K/ylm0whqpNSnceZZunZ2O9TIuR1J43Deo4Dq.KtoR8eQFjfhqTli",
+        "username": "goodluck",
+        "__v": 0,
+        "courses": [{"_id": "59adc38fa2aa13037a932102", "code": "ECE104"}]
+    }, "course": {"title": "Embedded Systems", "code": "ECE104"},
+    "schedule":
+        {
+            "date": "Wednesday, September 6th 2017, 6:16 pm",
+            "venue": "LT201",
+            "_id": "59adc38ea2aa13037a932101",
+            "attendance": [
+                {"student_id": "59ac0784fca53c02a53fe59b"},
+                {"student_id": "59ac0784fca53c02a53fe59b"},
+                {"student_id": "59ac0784fca53c02a53fe59b"}]
+        }
+};
