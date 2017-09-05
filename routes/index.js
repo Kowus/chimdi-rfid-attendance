@@ -24,7 +24,7 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
 router.get('/courses/get/:id',isLoggedIn, (req, res, next)=>{
     Course.findOne({_id:req.params.id}, (err, course)=>{
         if (err) return res.send("Error getting Schedule");
-        res.json(course);
+        res.render("course_outline",{title:req.user.username+" Dashboard", user:req.user, courses:course});
     })
 });
 router.get('/login', isNotLoggedIn, function(req, res, next) {

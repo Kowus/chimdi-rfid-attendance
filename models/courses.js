@@ -10,10 +10,7 @@ let CourseSchema = new mongoose.Schema({
     schedule:[
         {
             attendance:{
-                student_id: mongoose.Schema.Types.ObjectId,
-                isPresent:{
-                    type: Boolean
-                }
+                student_id: mongoose.Schema.Types.ObjectId
             },
             date: String,
             venue: String

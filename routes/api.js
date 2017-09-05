@@ -87,10 +87,9 @@ router.get('/signin/card', (req, res, next) => {
 
             Course.updateOne({"schedule.date":'Wednesday, September 6th 2017, 6:16 pm'},{
                 $push: {
-                    "history":{
+                    "schedule.0.attendance":{
                         $each:[{
-                            "student":user._id,
-                            "date":moment(new Date().toISOString()).format('dddd, MMMM Do YYYY, h:mm a')
+                            "student_id":user._id
                         }],
                             $position: 0
                     }
@@ -99,15 +98,22 @@ router.get('/signin/card', (req, res, next) => {
                 let token = jwt.sign(user, config.secret);
                 res.json({success: true, token: 'JWT ' + token});
             });
-
-/*
+            /*
             Course.findOne({"schedule.date": 'Wednesday, September 6th 2017, 6:16 pm'}, function (err, course) {
                 if (err) return res.send("Error signing student in.");
                 let cloneCourse = course;
                 for (var key in cloneCourse.schedule) {
                     if (cloneCourse.schedule[key].date === 'Wednesday, September 6th 2017, 6:16 pm') {
-                        // cloneCourse.schedule[key].attendance({student_id: user._id, present: true});
-                        console.log(Object.keys(cloneCourse.schedule));
+                        cloneCourse.schedule[key].attendance[0]={student_id: user._id, present: true};
+
+                        // console.log(Object.keys(cloneCourse.schedule));
+                        Course.updateOne({"schedule.date":'Wednesday, September 6th 2017, 6:16 pm'},{
+                            $push:{
+                                "schedule.0.attendance":{
+
+                                }
+                            }
+                        });
                     }
 
                 }

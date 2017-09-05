@@ -18,13 +18,7 @@
                 <h3 class="text-center">Your Scheduled Courses for the Week</h3>
                 <ul class="list-group list-unstyled text-center">
                     {{#each courses}}
-                        <li><a href="/courses/get/{{_id}}"><h4>{{title}} {{code}}</h4></a></li>
-                        <ul class="list-unstyled">
-                            {{#each schedule}}
-                            <li><a href="/{{this.date}}">{{this.date}}</a> </li>
-                            {{/each}}
-
-                        </ul>
+                        <li><a href="/courses/get/{{_id}}">{{title}} {{code}}</a></li>
                     {{/each}}
                 </ul>
             </div>
