@@ -25,7 +25,8 @@ let UserSchema = new mongoose.Schema({
         unique: true,
         required: true
     }, indexNumber:{
-        type: Number,
+        type: String,
+    required:true,
         unique:true
     }
 });
