@@ -96,7 +96,7 @@ router.get('/signin/card', (req, res, next) => {
                 }}, function (err, course) {
                 if(err) {console.error(err);return res.send("Error signing student in.");}
                 let token = jwt.sign(user, config.secret);
-                res.json({success: true, token: 'JWT ' + token});
+                res.json({success: true, token: 'JWT ' + token, course:course});
             });
             /*
             Course.findOne({"schedule.date": 'Wednesday, September 6th 2017, 6:16 pm'}, function (err, course) {
