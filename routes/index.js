@@ -39,9 +39,9 @@ router.get('/courses/get/:id',isLoggedIn, (req, res, next)=>{
             }
 
         }
-        res.json({title:req.user.username+" Dashboard", user:req.user, course: {title: course.title, code: course.code }, schedule:newSched});
+        // res.json({title:req.user.username+" Dashboard", user:req.user, course: {title: course.title, code: course.code }, schedule:newSched});
 
-        // res.render("course_outline",{title:req.user.username+" Dashboard", user:req.user, course_name:course.title, schedule:newSched});
+        res.render("course_outline",{title:req.user.username+" Dashboard", user:req.user, course: {title: course.title, code: course.code }, schedule:newSched});
     })
 });
 router.get('/login', isNotLoggedIn, function(req, res, next) {

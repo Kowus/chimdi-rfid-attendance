@@ -16,7 +16,24 @@
                 <h1>Welcome {{user.firstname}} {{user.lastname}}</h1>
 
                 <h3 class="text-center">Attendance Log For {{course.title}} {{course.code}} <small> {{schedule.date}} [ {{schedule.venue}} ]</small></h3>
-                <table></table>
+                <table class="table .table-condensed .table-responsive .table-striped">
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Index Number</th>
+                    </tr>
+                    {{#each schedule}}
+                        {{#each attendance}}
+                        <tr>
+                            <td>{{this.student_fname}} {{student_lname}}</td>
+                            <td>{{student_index}}</td>
+                        </tr>
+                        {{/each}}
+                    {{/each}}
+
+                </table>
+                <div class="btn-group" style="width: 100%;">
+                <a class="btn btn-success pull-right">Mail</a>
+                </div>
             </div>
 
 
