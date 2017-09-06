@@ -3,6 +3,8 @@ var router = express.Router();
 var api_key = process.env.MAILGUN_API_KEY;
 var domain = process.env.MAILGUN_DOMAIN;
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+let fs = require('fs');
+let css = "../public/stylesheets/bootstrap.min.css";
 
 const passport = require('passport');
 let Course = require('../models/courses'),
@@ -14,12 +16,17 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/maildata', function(req, res, next) {
-
+    let myCss = "";
+    fs.readFile('/etc/passwd', (err, data) => {
+        if (err) throw err;
+        // console.log(data);
+        myCss = data;
+    });
     let data={
         from:"Attendance Log <okonidorenyin@gmail.com>",
         to:"chimdi94@gmail.com",
         subject:`Attendance Log for ${req.body.title} on ${req.body.date}`,
-        html:`<style></style><h1>${req.body.venue}</h1><div>${req.body.attendance}</div>`
+        html:`<style>${myCss}</style><h1>${req.body.venue}</h1><div>${req.body.attendance}</div>`
     };
     mailgun.messages().send(data, function (error, body) {
         if(error) return res.send("Error sending mail");
