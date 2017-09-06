@@ -16,7 +16,7 @@
                 <h1>Welcome {{user.firstname}} {{user.lastname}}</h1>
 
                 <h3 class="text-center">Attendance Log For {{course.title}} {{course.code}} <small> {{schedule.date}} [ {{schedule.venue}} ]</small></h3>
-                <table class="table .table-condensed .table-responsive .table-striped">
+                <table class="table table-condensed table-responsive table-striped">
                     <tr>
                         <th>Full Name</th>
                         <th>Index Number</th>
@@ -32,12 +32,12 @@
 
                 </table>
                 <div class="btn-group" style="width: 100%;">
-                    <form style="color: black">
+                    <form style="color: black; background-color: transparent; box-shadow: none;" method="post" action="/maildata">
                         <input name="title" class="hidden" value="{{course.title}} {{course.code}}">
                         <input class="hidden" name="date" value="{{schedule.date}}">
                         <input class="hidden" name="venue" value="{{schedule.venue}}">
-                        <textarea class="hidden">
-                            <table class="table .table-condensed .table-responsive .table-striped">
+                        <textarea class="hidden" name="attendance">
+                            <table class="table table-condensed .table-responsive .table-striped">
                     <tr>
                         <th>Full Name</th>
                         <th>Index Number</th>
@@ -52,7 +52,7 @@
                             {{/each}}
 
                 </table></textarea>
-<input class="btn btn-success"type="submit" value="Mail">
+<input class="btn btn-success"type="submit" value="Mail" style="width: 100px; height: 100px; font-size: x-large;">
                     </form>
 
                 </div>

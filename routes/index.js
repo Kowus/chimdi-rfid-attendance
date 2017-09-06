@@ -1,5 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var api_key = process.env.MAILGUN_API_KEY;
+var domain = 'www.mydomain.com';
+var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
 const passport = require('passport');
 let Course = require('../models/courses'),
     User = require('../models/user');
@@ -7,6 +11,10 @@ let Course = require('../models/courses'),
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.redirect('/login');
+});
+
+router.post('/maildata', function(req, res, next) {
+res.send(req.body);
 });
 
 // router.get('/signup', function(req, res, next) {
