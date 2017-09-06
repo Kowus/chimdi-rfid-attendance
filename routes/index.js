@@ -14,7 +14,20 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/maildata', function(req, res, next) {
-res.send(req.body);
+
+    let data={
+        from:"Attendance Log <okonidorenyin@gmail.com>",
+        to:"chimdi94@gmail.com",
+        subject:`Attendance Log for ${req.body.title} on ${req.body.date}`,
+        html:`<style></style><h1>${req.body.venue}</h1><div>${req.body.attendance}</div>`
+    };
+    mailgun.messages().send(data, function (error, body) {
+        if(error) return res.send("Error sending mail");
+        // console.log(body);
+        res.redirect('/profile');
+    });
+
+
 });
 
 // router.get('/signup', function(req, res, next) {
