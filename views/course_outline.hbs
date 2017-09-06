@@ -32,10 +32,31 @@
 
                 </table>
                 <div class="btn-group" style="width: 100%;">
-                <a class="btn btn-success pull-right">Mail</a>
+                    <form style="color: black">
+                        <input name="title" class="hidden" value="{{course.title}} {{course.code}}">
+                        <input class="hidden" name="date" value="{{schedule.date}}">
+                        <input class="hidden" name="venue" value="{{schedule.venue}}">
+                        <textarea class="hidden">
+                            <table class="table .table-condensed .table-responsive .table-striped">
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Index Number</th>
+                    </tr>
+                            {{#each schedule}}
+                                {{#each attendance}}
+                                    <tr>
+                            <td>{{this.student_fname}} {{student_lname}}</td>
+                            <td>{{student_index}}</td>
+                        </tr>
+                                {{/each}}
+                            {{/each}}
+
+                </table></textarea>
+<input class="btn btn-success"type="submit" value="Mail">
+                    </form>
+
                 </div>
             </div>
-
 
 
 
