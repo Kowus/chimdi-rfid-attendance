@@ -77,7 +77,7 @@ router.post('/signin', function (req, res) {
         });
     }
 });
-
+// rfid-attendance.herokuapp.com/api/signin/card/?sernum=
 router.get('/signin/card', (req, res, next) => {
     User.findOne({
         card: req.query.sernum

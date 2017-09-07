@@ -14,7 +14,7 @@ let CourseSchema = new mongoose.Schema({
                 student_fname:String,
                 student_lname:String,
                 student_index:String,
-                student_present:true
+                student_present:Boolean
             }],
             date: String,
             venue: String
