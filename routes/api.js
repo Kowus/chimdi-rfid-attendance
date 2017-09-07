@@ -79,7 +79,8 @@ router.post('/signin', function (req, res) {
 });
 // rfid-attendance.herokuapp.com/api/signin/card/?sernum=
 router.get('/signin/card', (req, res, next) => {
-    let pres = req.query.present === "true";
+    let pres = req.query.present == "true";
+    console.log(req.query);
     User.findOne({
         card: req.query.sernum
     }, function (err, user) {
@@ -91,7 +92,7 @@ router.get('/signin/card', (req, res, next) => {
 
             Course.updateOne({"schedule.date":'Thursday, September 7th 2017, 6:16 pm'},{
                 $push: {
-                    "schedule.1.attendance":{
+                    "schedule.2.attendance":{
                         $each:[{
                             "student_id":user._id,
                             "student_fname":user.firstname,
