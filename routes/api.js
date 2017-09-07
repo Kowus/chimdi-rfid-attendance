@@ -9,7 +9,7 @@ let jwt = require('jsonwebtoken'),
     Course = require('../models/courses'),
     moment = require('moment');
 
-moment(Date().toISOString()).format('dddd, MMMM Do YYYY, h:mm a')
+// moment(Date().toISOString()).format('dddd, MMMM Do YYYY, h:mm a')
 router.post('/signup', function (req, res) {
     if (!req.body.username || !req.body.password) {
         res.json({success: false, msg: 'Please pass username and password'});
