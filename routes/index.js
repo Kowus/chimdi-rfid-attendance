@@ -73,10 +73,10 @@ router.get('/courses/get/:id',isLoggedIn, (req, res, next)=>{
     })
 });
 router.get('/student/get/:id',isLoggedIn, (req, res, next)=>{
-    console.log(req.query);
     User.findOne({"_id":req.params.id}, (err, user)=>{
         if (err) return res.send("Error getting student profile");
-        res.json({title:user.username+" profile", user:req.user, course: {title: req.query.course, code: req.query.code }, student:user})
+        user.attPercent = roundTo((user.totalAttendance/user.expectedAttendance * 100), 0);
+        res.render('studprof',{title:user.username+" profile", user:req.user, course: {title: req.query.course, code: req.query.code }, student:user})
     });
 
 });
@@ -118,4 +118,15 @@ function isNotLoggedIn(req, res, next) {
         res.redirect('/profile');
     else
         return next();
+}
+
+function roundTo(n, digits) {
+    if (digits === undefined) {
+        digits = 0;
+    }
+
+    var multiplicator = Math.pow(10, digits);
+    n = parseFloat((n * multiplicator).toFixed(11));
+    var test =(Math.round(n) / multiplicator);
+    return +(test.toFixed(digits));
 }

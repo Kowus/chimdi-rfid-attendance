@@ -102,5 +102,33 @@ var jfdi =
 
 let moment = require('moment');
 
-let myMoment = moment(new Date().toISOString()).format('dddd, MMMM Do YYYY,')+" 6:16 pm";
+let myMoment = moment(new Date().toISOString()).format('dddd, MMMM Do YYYY,') + " 6:16 pm";
 console.log(myMoment);
+
+let tm = {
+    "title": "chimdi profile",
+    "user": {
+        "_id": "59adc36698f47103724c5da3",
+        "firstname": "Goodluck",
+        "lastname": "Akimbola",
+        "email": "akimbola@gmail.com",
+        "password": "$2a$10$K/ylm0whqpNSnceZZunZ2O9TIuR1J43Deo4Dq.KtoR8eQFjfhqTli",
+        "username": "goodluck",
+        "__v": 0,
+        "courses": [{"_id": "59adc38fa2aa13037a932102", "code": "ECE104"}]
+    },
+    "course": {"title": "Embedded Systems", "code": "ECE104"},
+    "student": {
+        "_id": "59af691aa02f0006269c698e",
+        "firstname": "Chimdi",
+        "lastname": "Ihenacho",
+        "username": "chimdi",
+        "password": "$2a$10$T4VY3WlmdubVyu.mHiTpFeFDVs6sEFg5wOCyWLYbS8AaZBXgYyt5G",
+        "card": "019089126153",
+        "indexNumber": "ANU15270191",
+        "__v": 0,
+        "attendanceDates": [],
+        "totalAttendance": 2,
+        "expectedAttendance": 15
+    }
+}
