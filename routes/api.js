@@ -9,7 +9,7 @@ let jwt = require('jsonwebtoken'),
     Course = require('../models/courses'),
     moment = require('moment');
 
-
+moment(Date().toISOString()).format('dddd, MMMM Do YYYY, h:mm a')
 router.post('/signup', function (req, res) {
     if (!req.body.username || !req.body.password) {
         res.json({success: false, msg: 'Please pass username and password'});
@@ -95,11 +95,19 @@ router.get('/signin/card', (req, res, next) => {
                             "student_id":user._id,
                             "student_fname":user.firstname,
                             "student_lname":user.lastname,
-                            "student_index":user.indexNumber
+                            "student_index":user.indexNumber,
+                            "student_present":true
                         }],
                             $position: 0
                     }
                 }}, function (err, course) {
+                User.updateOne({"_id":user._id},{
+                    $inc:{
+                        totalAttendance: 1
+                    }
+                },function (er, usr) {
+                    if(er){console.error(er);return res.send("Error signing student in.");}
+                });
                 if(err) {console.error(err);return res.send("Error signing student in.");}
                 let token = jwt.sign(user, config.secret);
                 res.json({success: true, token: 'JWT ' + token, course:course});

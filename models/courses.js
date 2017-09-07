@@ -9,9 +9,13 @@ let CourseSchema = new mongoose.Schema({
     },
     schedule:[
         {
-            attendance:{
-                student_id: mongoose.Schema.Types.ObjectId
-            },
+            attendance:[{
+                student_id: mongoose.Schema.Types.ObjectId,
+                student_fname:String,
+                student_lname:String,
+                student_index:String,
+                student_present:true
+            }],
             date: String,
             venue: String
         }

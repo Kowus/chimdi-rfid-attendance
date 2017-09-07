@@ -1,3 +1,4 @@
+/*
 let foo = {
     _id: "59adc38ea2aa13037a9320d5",
     __v: 0,
@@ -97,4 +98,9 @@ var jfdi =
             ]
         }
     }
-;
+;*/
+
+let moment = require('moment');
+
+let myMoment = moment(new Date().toISOString()).format('dddd, MMMM Do YYYY,')+" 6:16 pm";
+console.log(myMoment);
