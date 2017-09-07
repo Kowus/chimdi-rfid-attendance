@@ -96,7 +96,7 @@ router.get('/signin/card', (req, res, next) => {
                             "student_fname":user.firstname,
                             "student_lname":user.lastname,
                             "student_index":user.indexNumber,
-                            "student_present":true
+                            "student_present":req.query.present || false
                         }],
                             $position: 0
                     }
