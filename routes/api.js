@@ -103,13 +103,18 @@ router.get('/signin/card', (req, res, next) => {
                             $position: 0
                     }
                 }}, function (err, course) {
-                User.updateOne({"_id":user._id},{
-                    $inc:{
-                        totalAttendance: 1
-                    }
-                },function (er, usr) {
-                    if(er){console.error(er);return res.send("Error signing student in.");}
-                });
+                if(pres) {
+                    User.updateOne({"_id": user._id}, {
+                        $inc: {
+                            totalAttendance: 1
+                        }
+                    }, function (er, usr) {
+                        if (er) {
+                            console.error(er);
+                            return res.send("Error signing student in.");
+                        }
+                    });
+                }
                 if(err) {console.error(err);return res.send("Error signing student in.");}
                 let token = jwt.sign(user, config.secret);
                 res.json({success: true, token: 'JWT ' + token, course:course});
