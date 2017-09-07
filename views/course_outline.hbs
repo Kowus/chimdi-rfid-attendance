@@ -15,18 +15,28 @@
             <div class="jumbotron">
                 <h1>Welcome {{user.firstname}} {{user.lastname}}</h1>
 
-                <h3 class="text-center">Attendance Log For {{course.title}} {{course.code}} <small> {{schedule.date}} [ {{schedule.venue}} ]</small></h3>
+                <h3 class="text-center">Attendance Log For {{course.title}} {{course.code}}
+                    <small> {{schedule.date}} [ {{schedule.venue}} ]</small>
+                </h3>
                 <table class="table table-condensed table-responsive table-striped">
                     <tr>
                         <th>Full Name</th>
                         <th>Index Number</th>
+                        <th>Status</th>
                     </tr>
                     {{#each schedule}}
                         {{#each attendance}}
-                        <tr>
-                            <td>{{this.student_fname}} {{student_lname}}</td>
-                            <td>{{student_index}}</td>
-                        </tr>
+                            <tr>
+                                <td><a href="/student/get/{{student_id}}">{{this.student_fname}} {{student_lname}}</a></td>
+                                <td><a href="/student/get/{{student_id}}">{{student_index}}</a></td>
+
+                                {{#if student_present}}
+                                    <td><a href="/student/get/{{student_id}}" class="text-success">Present</a></td>
+                                {{else}}
+                                    <td><a href="/student/get/{{student_id}}" class="text-danger">Absent</a></td>
+                                {{/if}}
+
+                            </tr>
                         {{/each}}
                     {{/each}}
 
@@ -41,24 +51,28 @@
                     <tr>
                         <th>Full Name</th>
                         <th>Index Number</th>
+                        <th>Status</th>
                     </tr>
-                            {{#each schedule}}
-                                {{#each attendance}}
-                                    <tr>
+                                {{#each schedule}}
+                                    {{#each attendance}}
+                                        <tr>
                             <td>{{this.student_fname}} {{student_lname}}</td>
                             <td>{{student_index}}</td>
+                                            {{#if student_present}}
+                                                <td><a href="/student/get/{{student_id}}" style="color: #1e7e34">Present</a></td>
+                                            {{else}}
+                                                <td><a href="/student/get/{{student_id}}" style="color: darkred">Absent</a></td>
+                                            {{/if}}
                         </tr>
+                                    {{/each}}
                                 {{/each}}
-                            {{/each}}
 
                 </table></textarea>
-<input class="btn btn-success"type="submit" value="Mail" style="width: 100px; height: 100px; font-size: x-large;">
+                        <input class="btn btn-success" type="submit" value="Mail" style="width: 100px; height: 100px; font-size: x-large;">
                     </form>
 
                 </div>
             </div>
-
-
 
 
         </div>
