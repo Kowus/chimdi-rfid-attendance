@@ -28,6 +28,13 @@ let UserSchema = new mongoose.Schema({
         type: String,
     required:true,
         unique:true
+    }, expectedAttendance:{
+        type: Number,
+        default: 15
+    },
+    totalAttendance:{
+        type: Number,
+        default: 0
     }
 });
 
