@@ -79,6 +79,7 @@ router.post('/signin', function (req, res) {
 });
 // rfid-attendance.herokuapp.com/api/signin/card/?sernum=
 router.get('/signin/card', (req, res, next) => {
+    let pres = req.query.present === "true";
     User.findOne({
         card: req.query.sernum
     }, function (err, user) {
@@ -96,7 +97,7 @@ router.get('/signin/card', (req, res, next) => {
                             "student_fname":user.firstname,
                             "student_lname":user.lastname,
                             "student_index":user.indexNumber,
-                            "student_present":req.query.present || false
+                            "student_present":pres
                         }],
                             $position: 0
                     }
