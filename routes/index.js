@@ -72,6 +72,14 @@ router.get('/courses/get/:id',isLoggedIn, (req, res, next)=>{
         res.render("course_outline",{title:req.user.username+" Dashboard", user:req.user, course: {title: course.title, code: course.code }, schedule:newSched});
     })
 });
+router.get('/student/get/:id',isLoggedIn, (req, res, next)=>{
+    console.log(req.query);
+    User.findOne({"_id":req.params.id}, (err, user)=>{
+        if (err) return res.send("Error getting student profile");
+        res.json({title:user.username+" profile", user:req.user, course: {title: req.query.course, code: req.query.code }, student:user})
+    });
+
+});
 router.get('/login', isNotLoggedIn, function(req, res, next) {
     res.render("login",{title:"Log In",message: req.flash('loginMessage') });
 });

@@ -1,0 +1,38 @@
+<style>
+    body {
+        margin-top: 0;
+        background-color: white;
+        background-image: url("anuc");
+        color: black;
+    }
+</style>
+<div class="container-fluid" style="background-color: white">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12" style="border-right: 2px solid black; height: calc(100vh - 50px); align-content: center; justify-content: center;">
+            <!--<div class="col-md-12">-->
+            <!--<img class="img-responsive img-rounded text-center" src="/images/1.jpg" style="marg">-->
+            <!--</div>-->
+            <div class="jumbotron">
+                <h1> {{user.firstname}} {{user.lastname}}</h1>
+
+                <h3 class="text-center">Your Scheduled Courses for the Week</h3>
+                <ul class="list-group list-unstyled text-center">
+                    {{#each courses}}
+                        <li><a href=""><h4>{{title}} {{code}}</h4></a></li>
+                        <ul style="margin-top: 20px;" class="list-unstyled">
+                            {{#each schedule}}
+                                <li><a href="/courses/get/{{_id}}">{{this.date}}</a> </li>
+                            {{/each}}
+
+                        </ul>
+                    {{/each}}
+                </ul>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>

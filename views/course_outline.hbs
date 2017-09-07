@@ -27,13 +27,13 @@
                     {{#each schedule}}
                         {{#each attendance}}
                             <tr>
-                                <td><a href="/student/get/{{student_id}}">{{this.student_fname}} {{student_lname}}</a></td>
-                                <td><a href="/student/get/{{student_id}}">{{student_index}}</a></td>
+                                <td><a href="/student/get/{{student_id}}/?course={{../../course.title}}&code={{../../course.code}}">{{this.student_fname}} {{student_lname}}</a></td>
+                                <td><a href="/student/get/{{student_id}}/?course={{../../course.title}}&code={{../../course.code}}">{{student_index}}</a></td>
 
                                 {{#if student_present}}
-                                    <td><a href="/student/get/{{student_id}}" class="text-success">Present</a></td>
+                                    <td><a href="/student/get/{{student_id}}/?course={{../../course.title}}&code={{../../course.code}}" class="text-success">Present</a></td>
                                 {{else}}
-                                    <td><a href="/student/get/{{student_id}}" class="text-danger">Absent</a></td>
+                                    <td><a href="/student/get/{{student_id}}/?course={{../../course.title}}&code={{../../course.code}}" class="text-danger">Absent</a></td>
                                 {{/if}}
 
                             </tr>
@@ -56,12 +56,12 @@
                                 {{#each schedule}}
                                     {{#each attendance}}
                                         <tr>
-                            <td>{{this.student_fname}} {{student_lname}}</td>
-                            <td>{{student_index}}</td>
+                                            <td><a href="/student/get/{{student_id}}/?course={{../../course.title}}&code={{../../course.code}}">{{this.student_fname}} {{student_lname}}</a></td>
+                                            <td><a href="/student/get/{{student_id}}/?course={{../../course.title}}&code={{../../course.code}}">{{student_index}}</a></td>
                                             {{#if student_present}}
-                                                <td><a href="/student/get/{{student_id}}" style="color: #1e7e34">Present</a></td>
+                                                <td><a href="/student/get/{{student_id}}/?course={{../../course.title}}&code={{../../course.code}}" style="color: #1e7e34">Present</a></td>
                                             {{else}}
-                                                <td><a href="/student/get/{{student_id}}" style="color: darkred">Absent</a></td>
+                                                <td><a href="/student/get/{{student_id}}/?course={{../../course.title}}&code={{../../course.code}}" style="color: darkred">Absent</a></td>
                                             {{/if}}
                         </tr>
                                     {{/each}}

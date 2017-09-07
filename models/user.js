@@ -35,7 +35,7 @@ let UserSchema = new mongoose.Schema({
     totalAttendance: {
         type: Number,
         default: 0
-    }
+    },attendanceDates:Array
 });
 
 UserSchema.pre('save', function (next) {
