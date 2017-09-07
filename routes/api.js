@@ -92,7 +92,7 @@ router.get('/signin/card', (req, res, next) => {
 
             Course.updateOne({"schedule.date":'Thursday, September 7th 2017, 6:16 pm'},{
                 $push: {
-                    "schedule.10.attendance":{
+                    "schedule.11.attendance":{
                         $each:[{
                             "student_id":user._id,
                             "student_fname":user.firstname,
